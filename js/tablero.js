@@ -12,6 +12,8 @@ newGameButton.addEventListener("click", () => {
 
 function resetGameBoard() {
   const divBoard = document.querySelector("#board");
+  hideCorrectWord();
+  clearCanvas();
   divBoard.textContent = "";
   gameWord = "";
   wrongLetters = [];
@@ -95,6 +97,7 @@ function addCorrectLetter(letter, indexes) {
 
 function decreaseAttempts() {
   let attemptsSpan = document.querySelector("#attemptsLeft");
+  drawHangman(attemptsSpan.textContent);
   attemptsSpan.textContent > 1
     ? attemptsSpan.textContent--
     : (attemptsSpan.textContent--, gameOver());
@@ -103,6 +106,11 @@ function decreaseAttempts() {
 function showCorrectWord() {
   document.querySelector(".correct_word").style.display = "block";
   document.querySelector("#gameWord").textContent = gameWord;
+}
+
+function hideCorrectWord() {
+  document.querySelector(".correct_word").style.display = "none";
+  document.querySelector("#gameWord").textContent = "";
 }
 
 function checkWin() {
@@ -124,4 +132,121 @@ function gameOver() {
   setTimeout(() => {
     alert("GAME OVER! jajajajaja");
   }, 10);
+}
+
+function drawHangman(attemptsLeft) {
+  let canvas = document.querySelector("#canvas");
+  let ctx = canvas.getContext("2d");
+  ctx.strokeStyle = "red";
+
+  // 1st attempt (base)
+  let firstAtt = () => {
+    ctx.moveTo(90, 310);
+    ctx.lineTo(230, 310);
+    ctx.lineWidth = 8;
+    ctx.stroke();
+  };
+
+  // 2nd attempt (hanger)
+  const secondAtt = () => {
+    ctx.moveTo(160, 310);
+    ctx.lineTo(160, 70);
+    ctx.lineWidth = 8;
+    ctx.strokeStyle = "red";
+    ctx.stroke();
+
+    ctx.lineTo(300, 30);
+    ctx.lineWidth = 8;
+    ctx.strokeStyle = "red";
+    ctx.stroke();
+
+    ctx.lineTo(300, 80);
+    ctx.lineWidth = 8;
+    ctx.strokeStyle = "red";
+    ctx.stroke();
+  };
+
+  // 3rd attempt (head)
+  const thirdAtt = () => {
+    ctx.beginPath();
+    ctx.arc(300, 120, 40, 0, 2 * Math.PI);
+    ctx.stroke();
+  };
+
+  // 4th attempt (body)
+  const fourthAtt = () => {
+    ctx.moveTo(300, 160);
+    ctx.lineTo(300, 240);
+    ctx.lineWidth = 8;
+    ctx.stroke();
+  };
+
+  // 5th attempt (left arm)
+  const fifthAtt = () => {
+    ctx.moveTo(300, 190);
+    ctx.lineTo(240, 180);
+    ctx.lineWidth = 8;
+    ctx.stroke();
+  };
+
+  // 6th attempt (right arm)
+  const sixthAtt = () => {
+    ctx.moveTo(300, 190);
+    ctx.lineTo(360, 180);
+    ctx.lineWidth = 8;
+    ctx.stroke();
+  };
+
+  // 7th attempt (left leg)
+  const seventhAtt = () => {
+    ctx.moveTo(302, 234);
+    ctx.lineTo(240, 280);
+    ctx.lineWidth = 8;
+    ctx.stroke();
+  };
+
+  // 8th attempt (right leg)
+  const eighthAtt = () => {
+    ctx.moveTo(298, 234);
+    ctx.lineTo(360, 280);
+    ctx.lineWidth = 8;
+    ctx.stroke();
+  };
+
+  switch (attemptsLeft) {
+    case "8":
+      firstAtt();
+      break;
+    case "7":
+      secondAtt();
+      break;
+    case "6":
+      thirdAtt();
+      break;
+    case "5":
+      fourthAtt();
+      break;
+    case "4":
+      fifthAtt();
+      break;
+    case "3":
+      sixthAtt();
+      break;
+    case "2":
+      seventhAtt();
+      break;
+    case "1":
+      eighthAtt();
+      break;
+
+    default:
+      break;
+  }
+}
+
+function clearCanvas() {
+  let canvas = document.querySelector("#canvas");
+  let ctx = canvas.getContext("2d");
+  ctx.beginPath();
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }

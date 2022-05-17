@@ -43,7 +43,7 @@ li {
     flex-direction: column;
     flex-grow: 1;
     margin: 0 auto;
-    margin-top: calc(100vh - 70vh);
+    margin-top: calc(100vh - 85vh);
 }
 
 .inicio {
@@ -62,6 +62,7 @@ li {
 .new_game {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-top: -250px;
     /* display: none; */
 }

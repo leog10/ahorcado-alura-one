@@ -48,23 +48,22 @@
       </div>
       <!-- New Game -->
       <div class="new_game">
-        <textarea
-          name="textBox"
-          id="textBox"
-          cols="10"
-          rows="10"
-          placeholder="Ingrese una palabra"
-        ></textarea>
-        <!-- Board -->
-        <p>Intentos: <span id="attemptsLeft"></span></p>
-        <div class="wrong_letters_container">
-          Letras incorrectas:
-          <span class="bracket">[</span>
-          <p id="wrongLetters"></p>
-          <span class="bracket">]</span>
-        </div>
-        <div class="correct_word">
-          <p>La palabra correcta era: <span id="gameWord"></span></p>
+        <div class="container">
+          <!-- canvas -->
+          <canvas id="canvas" width="500" height="350"></canvas>
+          <!-- canvas -->
+          <!-- Board -->
+
+          <p>Intentos: <span id="attemptsLeft"></span></p>
+          <div class="wrong_letters_container">
+            Letras incorrectas:
+            <span class="bracket">[</span>
+            <p id="wrongLetters"></p>
+            <span class="bracket">]</span>
+          </div>
+          <div class="correct_word">
+            <p>La palabra correcta era: <span id="gameWord"></span></p>
+          </div>
         </div>
         <ul id="board" class="letters"></ul>
         <!-- End Board -->
