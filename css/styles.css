@@ -148,6 +148,18 @@ button:hover {
     transform: scale(1.05);
 }
 
+.show_keyboard {
+    display: none;
+}
+
+#showKeyboard {
+    background-color: #276cc0;
+    color: white;
+    border: 1px solid #606060;
+    padding: 8px;
+    min-width: 30px;
+}
+
 .buttons_container {
     display: flex;
     gap: 30px;
@@ -274,6 +286,10 @@ footer {
     #canvas {
         width: 350px;
         height: 200px;
+    }
+
+    .show_keyboard {
+        display: block;
     }
 }
 
