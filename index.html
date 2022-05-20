@@ -50,19 +50,23 @@
       <div class="new_game">
         <div class="container">
           <!-- canvas -->
-          <canvas id="canvas" width="500" height="350"></canvas>
+          <canvas id="canvas"></canvas>
           <!-- canvas -->
           <!-- Board -->
 
-          <p>Intentos: <span id="attemptsLeft"></span></p>
-          <div class="wrong_letters_container">
-            Letras incorrectas:
-            <span class="bracket">[</span>
-            <p id="wrongLetters"></p>
-            <span class="bracket">]</span>
-          </div>
-          <div class="correct_word">
-            <p>La palabra correcta era: <span id="gameWord"></span></p>
+          <div class="game_info">
+            <p><b>Intentos:</b> <span id="attemptsLeft"></span></p>
+            <div class="wrong_letters_container">
+              Letras incorrectas:
+              <span class="bracket">[</span>
+              <p id="wrongLetters"></p>
+              <span class="bracket">]</span>
+            </div>
+            <div class="correct_word">
+              <p>
+                La palabra correcta era: <b><span id="gameWord"></span></b>
+              </p>
+            </div>
           </div>
         </div>
         <ul id="board" class="letters"></ul>

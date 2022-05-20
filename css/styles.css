@@ -29,13 +29,9 @@ li {
     display: flex;
 }
 
-.header img {
-    margin-right: 280px;
-}
-
 .header h1 {
     color: #0A3871;
-    margin: 0;
+    margin: 0 auto 0 50px;
 }
 
 .container {
@@ -43,7 +39,6 @@ li {
     flex-direction: column;
     flex-grow: 1;
     margin: 0 auto;
-    margin-top: calc(100vh - 85vh);
 }
 
 .inicio {
@@ -55,7 +50,6 @@ li {
 .new_word {
     display: flex;
     flex-direction: column;
-    margin-top: -25%;
     display: none;
 }
 
@@ -63,8 +57,14 @@ li {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -250px;
     /* display: none; */
+}
+
+#canvas {
+    width: 500px;
+    height: 350px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .wrong_letters_container {
@@ -81,7 +81,7 @@ li {
 }
 
 .correct_word {
-    margin: 10px 0;
+    margin: 15px 0;
     display: none;
 }
 
@@ -226,35 +226,9 @@ footer {
 
 /* Responsive */
 
-@media screen and (max-width: 1490px) {
-    .main_container {
-        margin-top: 50px;
-        width: 600px;
-    }
-
-    .header img {
-        margin-right: 170px;
-    }
-}
-
-@media screen and (max-width: 1210px) {
-    .main_container {
-        width: 450px;
-    }
-
-    .header img {
-        margin-right: 80px;
-    }
-}
-
 @media screen and (max-width: 1100px) {
-    .header img {
-        margin-right: 0;
-    }
-
     .header h1 {
-        margin-left: auto;
-        margin-right: auto;
+        display: none;
     }
 
     .container {
@@ -264,6 +238,11 @@ footer {
     .main_container {
         margin-top: 40px;
         width: 700px;
+    }
+
+    #canvas {
+        width: 400px;
+        height: 250px;
     }
 }
 
@@ -275,13 +254,30 @@ footer {
     .main_container {
         width: 550px;
     }
+
+    .letters {
+        height: 60px;
+        gap: 15px;
+    }
+
+    .letter {
+        font-size: 40px;
+    }
+
+    .letter_dash {
+        height: 5px;
+        width: 60px;
+        border-radius: 25px;
+        background-color: #0A3871;
+    }
+
+    #canvas {
+        width: 350px;
+        height: 200px;
+    }
 }
 
 @media screen and (max-width: 630px) {
-    .header h1 {
-        display: none;
-    }
-
     body {
         padding: 10px;
     }
@@ -305,6 +301,66 @@ footer {
         font-size: 20px;
         line-height: 28px;
     }
+
+    .letters {
+        height: 50px;
+        gap: 10px;
+    }
+
+    .letter {
+        font-size: 30px;
+    }
+
+    .letter_dash {
+        height: 5px;
+        width: 40px;
+        border-radius: 25px;
+        background-color: #0A3871;
+    }
+
+    #canvas {
+        width: 300px;
+        height: 150px;
+    }
 }
+
+@media screen and (max-width: 500px) {
+    button {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        min-width: 150px;
+        font-size: 15px;
+        border-radius: 20px;
+        border: 1px solid #0A3871;
+        cursor: pointer;
+        margin: 10px;
+    }
+
+    .letters {
+        height: 50px;
+        gap: 5px;
+    }
+
+    .letter {
+        font-size: 20px;
+    }
+
+    .letter_dash {
+        height: 5px;
+        width: 20px;
+        border-radius: 25px;
+        background-color: #0A3871;
+    }
+
+    .game_info {
+        align-self: flex-start;
+        font-size: 8px;
+    }
+
+    .wrong_letters_container {
+        gap: 0;
+    }
+}
+
 
 /* Responsive */

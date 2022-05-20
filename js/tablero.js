@@ -131,85 +131,74 @@ function gameOver() {
   showCorrectWord();
   setTimeout(() => {
     alert("GAME OVER! jajajajaja");
-  }, 10);
+  }, 50);
 }
 
 function drawHangman(attemptsLeft) {
   let canvas = document.querySelector("#canvas");
   let ctx = canvas.getContext("2d");
   ctx.strokeStyle = "red";
+  ctx.lineWidth = 3;
 
   // 1st attempt (base)
   let firstAtt = () => {
-    ctx.moveTo(90, 310);
-    ctx.lineTo(230, 310);
-    ctx.lineWidth = 8;
+    ctx.moveTo(60, 130);
+    ctx.lineTo(120, 130);
     ctx.stroke();
   };
 
   // 2nd attempt (hanger)
   const secondAtt = () => {
-    ctx.moveTo(160, 310);
-    ctx.lineTo(160, 70);
-    ctx.lineWidth = 8;
-    ctx.strokeStyle = "red";
+    ctx.moveTo(90, 130);
+    ctx.lineTo(90, 30);
     ctx.stroke();
 
-    ctx.lineTo(300, 30);
-    ctx.lineWidth = 8;
-    ctx.strokeStyle = "red";
+    ctx.lineTo(180, 10);
     ctx.stroke();
 
-    ctx.lineTo(300, 80);
-    ctx.lineWidth = 8;
-    ctx.strokeStyle = "red";
+    ctx.lineTo(180, 30);
     ctx.stroke();
   };
 
   // 3rd attempt (head)
   const thirdAtt = () => {
     ctx.beginPath();
-    ctx.arc(300, 120, 40, 0, 2 * Math.PI);
+    ctx.arc(180, 45, 15, 0, 2 * Math.PI);
     ctx.stroke();
   };
 
   // 4th attempt (body)
   const fourthAtt = () => {
-    ctx.moveTo(300, 160);
-    ctx.lineTo(300, 240);
-    ctx.lineWidth = 8;
+    ctx.moveTo(180, 60);
+    ctx.lineTo(180, 90);
     ctx.stroke();
   };
 
   // 5th attempt (left arm)
   const fifthAtt = () => {
-    ctx.moveTo(300, 190);
-    ctx.lineTo(240, 180);
-    ctx.lineWidth = 8;
+    ctx.moveTo(180, 70);
+    ctx.lineTo(150, 60);
     ctx.stroke();
   };
 
   // 6th attempt (right arm)
   const sixthAtt = () => {
-    ctx.moveTo(300, 190);
-    ctx.lineTo(360, 180);
-    ctx.lineWidth = 8;
+    ctx.moveTo(180, 70);
+    ctx.lineTo(210, 60);
     ctx.stroke();
   };
 
   // 7th attempt (left leg)
   const seventhAtt = () => {
-    ctx.moveTo(302, 234);
-    ctx.lineTo(240, 280);
-    ctx.lineWidth = 8;
+    ctx.moveTo(180, 89);
+    ctx.lineTo(150, 110);
     ctx.stroke();
   };
 
   // 8th attempt (right leg)
   const eighthAtt = () => {
-    ctx.moveTo(298, 234);
-    ctx.lineTo(360, 280);
-    ctx.lineWidth = 8;
+    ctx.moveTo(180, 89);
+    ctx.lineTo(210, 110);
     ctx.stroke();
   };
 
