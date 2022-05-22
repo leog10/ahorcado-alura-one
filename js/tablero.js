@@ -1,14 +1,99 @@
+function startNewGame() {
+  document.querySelector(".start").style.display = "none";
+  document.querySelector(".new_game").style.display = "flex";
+  customWord = [];
+  newGame();
+}
+
+function quitGame() {
+  document.querySelector(".start").style.display = "flex";
+  document.querySelector(".new_game").style.display = "none";
+  gameIsOver = true;
+}
+
+function goHome() {
+  document.querySelector(".start").style.display = "flex";
+  document.querySelector(".new_word").style.display = "none";
+  document.querySelector(".new_word_added").style.display = "none";
+  document.querySelector("#newWord").classList.remove("input_error");
+  document.querySelector("#newWord").classList.remove("input_correct");
+  customWord = [];
+}
+
+function customWordScreen() {
+  document.querySelector("#newWord").value = "";
+  document.querySelector(".start").style.display = "none";
+  document.querySelector(".new_word").style.display = "flex";
+}
+
+function addCustomWord() {
+  if (document.querySelector("#newWord").value.length < 3) {
+  } else {
+    const _customWord = document.querySelector("#newWord").value.toUpperCase();
+    customWord.push(_customWord);
+    document.querySelector("#newWord").value = "";
+    newWordAdded();
+  }
+}
+
+function newWordAdded() {
+  document.querySelector(".new_word_added").style.display = "block";
+  setTimeout(() => {
+    document.querySelector(".new_word_added").classList.remove("collapse");
+    document.querySelector(".new_word_added").classList.add("expand");
+  }, 50);
+  setTimeout(() => {
+    document.querySelector(".new_word_added").classList.remove("expand");
+    document.querySelector(".new_word_added").classList.add("collapse");
+  }, 250);
+}
+
+document.querySelector("#newWord").addEventListener("input", () => {
+  if (document.querySelector("#newWord").value.length < 3) {
+    document.querySelector("#newWord").classList.remove("input_correct");
+    document.querySelector("#newWord").classList.add("input_error");
+  } else {
+    document.querySelector("#newWord").classList.remove("input_error");
+    document.querySelector("#newWord").classList.add("input_correct");
+  }
+});
+
+function playCustomWord() {
+  if (customWord.length < 1) {
+  } else {
+    document.querySelector(".new_word_added").style.display = "none";
+    document.querySelector("#newWord").classList.remove("input_error");
+    document.querySelector("#newWord").classList.remove("input_correct");
+    document.querySelector(".new_word").style.display = "none";
+    document.querySelector(".new_game").style.display = "flex";
+    newGame();
+  }
+}
+
 const newGameButton = document.querySelector("#newGame");
 let gameWord = "";
 let wrongLetters = [];
 let correctLetters = [];
-let palabras = ["ALURA", "ANGULAR", "PYTHON"];
+let words = ["ALURA", "ANGULAR", "PYTHON", "PAPANATA"];
+let customWord = [];
 let gameIsOver = true;
 let wrongLetterParagraph = document.querySelector("#wrongLetters");
 
-newGameButton.addEventListener("click", () => {
-  createGameBoard(palabras);
+document.addEventListener("keypress", (e) => {
+  if (!gameIsOver) {
+    gameLogic(e);
+  } else {
+    this.removeEventListener("keypress", e);
+  }
 });
+
+function newGame() {
+  if (customWord[0]) {
+    createGameBoard(customWord);
+  } else {
+    createGameBoard(words);
+  }
+}
 
 function resetGameBoard() {
   const divBoard = document.querySelector("#board");
@@ -23,12 +108,12 @@ function resetGameBoard() {
   document.querySelector("#attemptsLeft").textContent = 8;
 }
 
-function createGameBoard(palabras) {
+function createGameBoard(words) {
   //create div board
   const divBoard = document.querySelector("#board");
   resetGameBoard();
 
-  gameWord = palabras[Math.floor(Math.random() * palabras.length)];
+  gameWord = words[Math.floor(Math.random() * words.length)];
 
   for (let i = 0; i < gameWord.length; i++) {
     // create letter container
@@ -45,12 +130,6 @@ function createGameBoard(palabras) {
     divBoard.appendChild(divLetterContainer);
   }
 }
-
-document.addEventListener("keypress", (e) => {
-  if (!gameIsOver) {
-    gameLogic(e);
-  }
-});
 
 function gameLogic(e) {
   if (/[a-zA-ZÑñ]/.test(e.key) && e.key != "Enter") {

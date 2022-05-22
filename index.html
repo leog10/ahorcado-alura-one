@@ -22,27 +22,38 @@
     </div>
     <div class="container">
       <!-- Index -->
-      <div class="inicio">
-        <button type="button">Nuevo Juego</button>
-        <button type="button">Agregar Palabra</button>
+      <div class="start">
+        <button id="startNewGame" type="button" onclick="startNewGame()">
+          Nuevo Juego
+        </button>
+        <button id="addCustomWord" type="button" onclick="customWordScreen()">
+          Personalizado
+        </button>
       </div>
       <!-- New Word -->
       <div class="new_word">
-        <textarea
-          name="textBox"
-          id="textBox"
-          cols="10"
-          rows="10"
+        <input
+          name="newWord"
+          id="newWord"
           placeholder="Ingrese una palabra"
-        ></textarea>
+          required
+          minlength="3"
+          maxlength="8"
+        />
         <div class="buttons_section">
           <div class="warning_container">
             <img src="./assets/warning.png" />
-            <p class="input_warning">Máx. de 10 letras</p>
+            <p class="input_warning">Min. de 3 y Máx. de 8 letras</p>
+          </div>
+          <div class="new_word_added">
+            <p>Palabra agregada exitosamente</p>
           </div>
           <div class="buttons_container">
-            <button type="button">Agregar Palabra</button>
-            <button type="button">Cancelar</button>
+            <button type="button" onclick="addCustomWord()">
+              Agregar palabra
+            </button>
+            <button type="button" onclick="playCustomWord()">Jugar</button>
+            <button type="button" onclick="goHome()">Cancelar</button>
           </div>
         </div>
       </div>
@@ -80,8 +91,10 @@
             <button id="showKeyboard" type="button">Abrir teclado</button>
           </div>
           <div class="buttons_container">
-            <button id="newGame" type="button">Nuevo Juego</button>
-            <button type="button">Desistir</button>
+            <button id="newGame" type="button" onclick="newGame()">
+              Nuevo Juego
+            </button>
+            <button type="button" onclick="quitGame()">Desistir</button>
           </div>
         </div>
       </div>
