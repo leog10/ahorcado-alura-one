@@ -13,7 +13,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/styles.css" />
-    <script src="./js/tablero.js" defer></script>
+    <script src="./js/draw.js" defer></script>
+    <script src="./js/script.js" defer></script>
   </head>
   <body>
     <div class="header">
@@ -39,14 +40,21 @@
           required
           minlength="3"
           maxlength="8"
+          onkeydown="return /[A-Z]/i.test(event.key)"
         />
+        <div id="warningErrorWord" class="warning_error">
+          <p>Error: Debe ingresar al menos 3 caracteres</p>
+        </div>
+        <div id="warningErrorNewCustomGame" class="warning_error">
+          <p>Error: Debe ingresar al menos una palabra</p>
+        </div>
         <div class="buttons_section">
           <div class="warning_container">
             <img src="./assets/warning.png" />
             <p class="input_warning">Min. de 3 y Máx. de 8 letras</p>
           </div>
           <div class="new_word_added">
-            <p>Palabra agregada exitosamente</p>
+            <p>Palabra agregada exitosamente. Puede agregar otra!</p>
           </div>
           <div class="buttons_container">
             <button type="button" onclick="addCustomWord()">
@@ -59,9 +67,9 @@
       </div>
       <!-- New Game -->
       <div class="new_game">
-        <div class="container">
+        <div class="container container_canvas">
           <!-- canvas -->
-          <canvas id="canvas"></canvas>
+          <canvas id="canvas" width="350" height="350"></canvas>
           <!-- canvas -->
           <!-- Board -->
 

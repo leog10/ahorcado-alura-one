@@ -1,3 +1,20 @@
+const newGameButton = document.querySelector("#newGame");
+let gameWord = "";
+let wrongLetters = [];
+let correctLetters = [];
+let words = ["ALURA", "ANGULAR", "PYTHON", "PAPANATA"];
+let customWord = [];
+let gameIsOver = true;
+let wrongLetterParagraph = document.querySelector("#wrongLetters");
+
+document.addEventListener("keypress", (e) => {
+  if (!gameIsOver) {
+    gameLogic(e);
+  } else {
+    this.removeEventListener("keypress", e);
+  }
+});
+
 function startNewGame() {
   document.querySelector(".start").style.display = "none";
   document.querySelector(".new_game").style.display = "flex";
@@ -8,6 +25,7 @@ function startNewGame() {
 function quitGame() {
   document.querySelector(".start").style.display = "flex";
   document.querySelector(".new_game").style.display = "none";
+  customWord = [];
   gameIsOver = true;
 }
 
@@ -28,7 +46,10 @@ function customWordScreen() {
 
 function addCustomWord() {
   if (document.querySelector("#newWord").value.length < 3) {
+    document.querySelector("#warningErrorWord").style.display = "block";
+    document.querySelector(".new_word_added").style.display = "none";
   } else {
+    document.querySelector("#warningErrorNewCustomGame").style.display = "none";
     const _customWord = document.querySelector("#newWord").value.toUpperCase();
     customWord.push(_customWord);
     document.querySelector("#newWord").value = "";
@@ -50,9 +71,11 @@ function newWordAdded() {
 
 document.querySelector("#newWord").addEventListener("input", () => {
   if (document.querySelector("#newWord").value.length < 3) {
+    document.querySelector("#warningErrorNewCustomGame").style.display = "none";
     document.querySelector("#newWord").classList.remove("input_correct");
     document.querySelector("#newWord").classList.add("input_error");
   } else {
+    document.querySelector("#warningErrorWord").style.display = "none";
     document.querySelector("#newWord").classList.remove("input_error");
     document.querySelector("#newWord").classList.add("input_correct");
   }
@@ -60,32 +83,18 @@ document.querySelector("#newWord").addEventListener("input", () => {
 
 function playCustomWord() {
   if (customWord.length < 1) {
+    document.querySelector("#warningErrorNewCustomGame").style.display =
+      "block";
   } else {
     document.querySelector(".new_word_added").style.display = "none";
     document.querySelector("#newWord").classList.remove("input_error");
     document.querySelector("#newWord").classList.remove("input_correct");
+    document.querySelector("#warningErrorWord").style.display = "none";
     document.querySelector(".new_word").style.display = "none";
     document.querySelector(".new_game").style.display = "flex";
     newGame();
   }
 }
-
-const newGameButton = document.querySelector("#newGame");
-let gameWord = "";
-let wrongLetters = [];
-let correctLetters = [];
-let words = ["ALURA", "ANGULAR", "PYTHON", "PAPANATA"];
-let customWord = [];
-let gameIsOver = true;
-let wrongLetterParagraph = document.querySelector("#wrongLetters");
-
-document.addEventListener("keypress", (e) => {
-  if (!gameIsOver) {
-    gameLogic(e);
-  } else {
-    this.removeEventListener("keypress", e);
-  }
-});
 
 function newGame() {
   if (customWord[0]) {
@@ -105,7 +114,8 @@ function resetGameBoard() {
   correctLetters = [];
   gameIsOver = false;
   wrongLetterParagraph.textContent = "";
-  document.querySelector("#attemptsLeft").textContent = 8;
+  document.querySelector("#attemptsLeft").textContent = 6;
+  drawHanger();
 }
 
 function createGameBoard(words) {
@@ -214,97 +224,54 @@ function gameOver() {
 }
 
 function drawHangman(attemptsLeft) {
-  let canvas = document.querySelector("#canvas");
-  let ctx = canvas.getContext("2d");
-  ctx.strokeStyle = "red";
-  ctx.lineWidth = 3;
-
-  // 1st attempt (base)
-  let firstAtt = () => {
-    ctx.moveTo(60, 130);
-    ctx.lineTo(120, 130);
-    ctx.stroke();
-  };
-
-  // 2nd attempt (hanger)
+  // 1st attempt (head)
   const secondAtt = () => {
-    ctx.moveTo(90, 130);
-    ctx.lineTo(90, 30);
-    ctx.stroke();
-
-    ctx.lineTo(180, 10);
-    ctx.stroke();
-
-    ctx.lineTo(180, 30);
-    ctx.stroke();
+    drawCircle(280, 100, 25);
   };
 
-  // 3rd attempt (head)
+  // 2nd attempt (body)
   const thirdAtt = () => {
-    ctx.beginPath();
-    ctx.arc(180, 45, 15, 0, 2 * Math.PI);
-    ctx.stroke();
+    drawLine(280, 130, 280, 180);
   };
 
-  // 4th attempt (body)
+  // 3th attempt (left arm)
   const fourthAtt = () => {
-    ctx.moveTo(180, 60);
-    ctx.lineTo(180, 90);
-    ctx.stroke();
+    drawLine(280, 140, 250, 170);
   };
 
-  // 5th attempt (left arm)
+  // 4th attempt (right arm)
   const fifthAtt = () => {
-    ctx.moveTo(180, 70);
-    ctx.lineTo(150, 60);
-    ctx.stroke();
+    drawLine(280, 140, 310, 170);
   };
 
-  // 6th attempt (right arm)
+  // 5th attempt (left leg)
   const sixthAtt = () => {
-    ctx.moveTo(180, 70);
-    ctx.lineTo(210, 60);
-    ctx.stroke();
+    drawLine(280, 180, 250, 240);
   };
 
-  // 7th attempt (left leg)
+  // 6th attempt (right leg)
   const seventhAtt = () => {
-    ctx.moveTo(180, 89);
-    ctx.lineTo(150, 110);
-    ctx.stroke();
-  };
-
-  // 8th attempt (right leg)
-  const eighthAtt = () => {
-    ctx.moveTo(180, 89);
-    ctx.lineTo(210, 110);
-    ctx.stroke();
+    drawLine(280, 180, 310, 240);
   };
 
   switch (attemptsLeft) {
-    case "8":
-      firstAtt();
-      break;
-    case "7":
+    case "6":
       secondAtt();
       break;
-    case "6":
+    case "5":
       thirdAtt();
       break;
-    case "5":
+    case "4":
       fourthAtt();
       break;
-    case "4":
+    case "3":
       fifthAtt();
       break;
-    case "3":
+    case "2":
       sixthAtt();
       break;
-    case "2":
-      seventhAtt();
-      break;
     case "1":
-      eighthAtt();
+      seventhAtt();
       break;
 
     default:

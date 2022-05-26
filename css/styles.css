@@ -40,6 +40,7 @@ li {
     flex-grow: 1;
     margin: 0 auto;
     justify-content: center;
+    align-items: center;
 }
 
 .start {
@@ -62,27 +63,33 @@ li {
     display: none;
 }
 
+.container_canvas {
+    margin-bottom: 10px;
+}
+
 #canvas {
-    width: 500px;
-    height: 350px;
     margin-bottom: 20px;
+}
+
+.game_info {
+    box-shadow: 0px 0px 1px 2px #0a3871;
+    border-radius: 5px;
+    padding: 10px;
 }
 
 .wrong_letters_container {
     display: flex;
-    gap: 5px;
-    align-items: flex-end;
+    gap: 2px;
+    align-items: center;
 }
 
 .bracket {
-    margin-bottom: -5px;
-    font-size: 1.5rem;
+    font-size: 40px;
     font-weight: bold;
     color: #ad0d0d;
 }
 
 .correct_word {
-    margin: 15px 0;
     display: none;
 }
 
@@ -113,6 +120,8 @@ li {
 }
 
 #newWord {
+    text-transform: uppercase;
+    padding: 0 10px;
     font-size: 32px;
     line-height: 48px;
     letter-spacing: 0em;
@@ -183,12 +192,18 @@ button:hover {
     display: flex;
     gap: 30px;
     margin-top: 15px;
-    margin-bottom: 30px;
     justify-content: center;
 }
 
 .buttons_section {
-    margin-top: 25px;
+    margin-top: 15px;
+}
+
+.warning_error {
+    color: red;
+    font-size: 18px;
+    margin: 10px 0 0px;
+    display: none;
 }
 
 .warning_container {
@@ -264,16 +279,17 @@ footer {
 
     .container {
         flex-direction: column;
+        align-items: center;
+    }
+
+    #canvas {
+        width: 300px;
+        height: 300px;
     }
 
     .main_container {
         margin-top: 40px;
         width: 700px;
-    }
-
-    #canvas {
-        width: 400px;
-        height: 250px;
     }
 }
 
@@ -302,13 +318,13 @@ footer {
         background-color: #0A3871;
     }
 
-    #canvas {
-        width: 350px;
-        height: 200px;
-    }
-
     .show_keyboard {
         display: block;
+    }
+
+    #canvas {
+        width: 250px;
+        height: 250px;
     }
 }
 
@@ -330,6 +346,7 @@ footer {
         flex-direction: column;
         gap: 0;
         align-items: center;
+        margin-bottom: 0;
     }
 
     #newWord {
@@ -354,8 +371,8 @@ footer {
     }
 
     #canvas {
-        width: 300px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
     }
 }
 
@@ -372,7 +389,7 @@ footer {
     }
 
     .letters {
-        height: 50px;
+        height: 30px;
         gap: 5px;
     }
 
@@ -388,14 +405,10 @@ footer {
     }
 
     .game_info {
-        align-self: flex-start;
         font-size: 8px;
     }
 
-    .wrong_letters_container {
-        gap: 0;
+    .bracket {
+        font-size: 22px;
     }
 }
-
-
-/* Responsive */
