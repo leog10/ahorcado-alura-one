@@ -2,7 +2,7 @@ const newGameButton = document.querySelector("#newGame");
 let gameWord = "";
 let wrongLetters = [];
 let correctLetters = [];
-let words = ["ALURA", "ANGULAR", "PYTHON", "PAPANATA"];
+let words = ["ALURA", "ANGULAR", "PYTHON", "PAPANATA", "PROGRAMADOR"];
 let customWord = [];
 let gameIsOver = true;
 let wrongLetterParagraph = document.querySelector("#wrongLetters");
@@ -20,10 +20,10 @@ function openKeyboard() {
 }
 
 document.querySelector("#inputMobile").addEventListener("keyup", (e) => {
+  key = document.querySelector("#inputMobile").value;
+  document.querySelector("#inputMobile").value = "";
   if (!gameIsOver) {
-    console.log(e.key);
-    gameLogic(e.key);
-    document.querySelector("#inputMobile").value = "";
+    gameLogic(key);
   } else {
     document.querySelector("#inputMobile").blur();
     this.removeEventListener("keyup", e);
@@ -50,6 +50,8 @@ function goHome() {
   document.querySelector(".new_word_added").style.display = "none";
   document.querySelector("#newWord").classList.remove("input_error");
   document.querySelector("#newWord").classList.remove("input_correct");
+  document.querySelector("#warningErrorWord").style.display = "none";
+  document.querySelector("#warningErrorNewCustomGame").style.display = "none";
   customWord = [];
 }
 
@@ -82,7 +84,7 @@ function newWordAdded() {
   }, 500);
 }
 
-document.querySelector("#newWord").addEventListener("input", () => {
+document.querySelector("#newWord").addEventListener("keypress", () => {
   if (document.querySelector("#newWord").value.length < 3) {
     document.querySelector("#warningErrorNewCustomGame").style.display = "none";
     document.querySelector("#newWord").classList.remove("input_correct");

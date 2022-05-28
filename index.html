@@ -54,7 +54,7 @@
           placeholder="Ingrese una palabra"
           required
           minlength="3"
-          maxlength="8"
+          maxlength="12"
           onkeydown="return /[A-ZÑ]/i.test(event.key)"
         />
         <div id="warningErrorWord" class="warning_error">
@@ -66,7 +66,7 @@
         <div class="buttons_section">
           <div class="warning_container">
             <img src="./assets/warning.png" />
-            <p class="input_warning">Min. de 3 y Máx. de 8 letras</p>
+            <p class="input_warning">Min. de 3 y Máx. de 12 letras</p>
           </div>
           <div class="new_word_added">
             <p>Palabra agregada exitosamente. Puede agregar otra!</p>
@@ -92,7 +92,12 @@
           <!-- canvas -->
           <canvas id="canvas" width="350" height="350"></canvas>
           <!-- canvas -->
+
           <!-- Board -->
+
+          <!-- Input for mobile keyboard -->
+          <input id="inputMobile" type="text" />
+          <!-- Input for mobile keyboard -->
 
           <div class="game_info">
             <p>
@@ -113,7 +118,6 @@
         </div>
         <ul id="board" class="letters"></ul>
         <!-- End Board -->
-        <input id="inputMobile" type="text" />
         <div class="buttons_section">
           <div class="warning_container">
             <img src="./assets/warning.png" />

@@ -69,7 +69,7 @@ li {
 
 .endMessage {
     position: absolute;
-    top: 25vh;
+    top: 20vh;
     font-size: 80px;
     background: #0a3871d9;
     font-family: cursive;
@@ -528,7 +528,7 @@ footer {
     }
 
     .endMessage {
-        font-size: 30px;
+        font-size: 40px;
         padding: 5px 10px;
         box-shadow: 0 0 0 15px transparent;
     }
@@ -546,8 +546,14 @@ footer {
     }
 
     .modal {
-        width: 310px;
+        width: auto;
+        margin: 0 10px;
         font-size: 20px;
+        padding: 40px 20px;
+    }
+
+    .buttons_modal {
+        margin-top: 20px;
     }
 
     #canvas {
