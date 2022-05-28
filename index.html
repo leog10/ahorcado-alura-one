@@ -76,7 +76,12 @@
               Agregar palabra
             </button>
             <button type="button" onclick="playCustomWord()">Jugar</button>
-            <button type="button" onclick="goHome()">Cancelar</button>
+            <button
+              type="button"
+              onclick="openModal('¿Estás seguro? Las palabras guardadas se eliminaran', goHome)"
+            >
+              Cancelar
+            </button>
           </div>
         </div>
       </div>
@@ -108,16 +113,25 @@
         </div>
         <ul id="board" class="letters"></ul>
         <!-- End Board -->
+        <input id="inputMobile" type="text" />
         <div class="buttons_section">
           <div class="warning_container">
             <img src="./assets/warning.png" />
             <p class="input_warning">Ingrese solo letras</p>
           </div>
           <div class="show_keyboard">
-            <button id="showKeyboard" type="button">Abrir teclado</button>
+            <button
+              tabindex="-1"
+              id="showKeyboard"
+              type="button"
+              onclick="openKeyboard()"
+            >
+              Abrir teclado
+            </button>
           </div>
           <div class="buttons_container">
             <button
+              tabindex="-1"
               id="newGame"
               type="button"
               onclick="openModal('¿Desea iniciar un juego nuevo?', newGame)"
@@ -125,6 +139,7 @@
               Nuevo Juego
             </button>
             <button
+              tabindex="-1"
               type="button"
               onclick="openModal('¿Desea salir del juego?', quitGame)"
             >
@@ -143,7 +158,7 @@
         </div>
         <ul class="links">
           <li>
-            <a href="https://github.com/leog10">
+            <a tabindex="-1" href="https://github.com/leog10">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24px"
@@ -159,7 +174,7 @@
             </a>
           </li>
           <li>
-            <a href="https://ar.linkedin.com/in/leonardogilli">
+            <a tabindex="-1" href="https://ar.linkedin.com/in/leonardogilli">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -175,7 +190,7 @@
             </a>
           </li>
           <li>
-            <a href="https://www.facebook.com/leonardogilli">
+            <a tabindex="-1" href="https://www.facebook.com/leonardogilli">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

@@ -15,6 +15,20 @@ document.addEventListener("keypress", (e) => {
   }
 });
 
+function openKeyboard() {
+  document.querySelector("#inputMobile").focus();
+}
+
+document.querySelector("#inputMobile").addEventListener("keypress", (e) => {
+  if (!gameIsOver) {
+    gameLogic(e);
+    document.querySelector("#inputMobile").value = "";
+  } else {
+    document.querySelector("#inputMobile").blur();
+    this.removeEventListener("keypress", e);
+  }
+});
+
 function startNewGame() {
   document.querySelector(".start").style.display = "none";
   document.querySelector(".new_game").style.display = "flex";

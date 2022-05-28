@@ -126,6 +126,11 @@ li {
     display: none;
 }
 
+#inputMobile {
+    opacity: 0;
+    pointer-events: none;
+}
+
 .letters {
     display: flex;
     height: 80px;
