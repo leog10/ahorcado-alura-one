@@ -7,11 +7,11 @@ let customWord = [];
 let gameIsOver = true;
 let wrongLetterParagraph = document.querySelector("#wrongLetters");
 
-document.addEventListener("keydown", (e) => {
+document.addEventListener("keypress", (e) => {
   if (!gameIsOver) {
     gameLogic(e);
   } else {
-    this.removeEventListener("keydown", e);
+    this.removeEventListener("keypress", e);
   }
 });
 
@@ -19,13 +19,13 @@ function openKeyboard() {
   document.querySelector("#inputMobile").focus();
 }
 
-document.querySelector("#inputMobile").addEventListener("keydown", (e) => {
+document.querySelector("#inputMobile").addEventListener("input", (e) => {
   if (!gameIsOver) {
     gameLogic(e);
     document.querySelector("#inputMobile").value = "";
   } else {
     document.querySelector("#inputMobile").blur();
-    this.removeEventListener("keydown", e);
+    this.removeEventListener("input", e);
   }
 });
 
