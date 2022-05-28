@@ -122,7 +122,6 @@ function resetGameBoard() {
   hideCorrectWord();
   clearCanvas();
   divBoard.textContent = "";
-  gameWord = "";
   wrongLetters = [];
   correctLetters = [];
   gameIsOver = false;
@@ -132,12 +131,26 @@ function resetGameBoard() {
   document.querySelector(".endMessage").style.display = "none";
 }
 
+function randomWord(words) {
+  let newGameWord = gameWord;
+  gameWord = words[Math.floor(Math.random() * words.length)];
+
+  while (gameWord == newGameWord) {
+    gameWord = words[Math.floor(Math.random() * words.length)];
+  }
+}
+
 function createGameBoard(words) {
   //create div board
   const divBoard = document.querySelector("#board");
   resetGameBoard();
 
-  gameWord = words[Math.floor(Math.random() * words.length)];
+  randomWord(words);
+
+  /* gameWord = words[Math.floor(Math.random() * words.length)];
+  while (gameWord == newGameWord) {
+    gameWord = words[Math.floor(Math.random() * words.length)];
+  } */
 
   for (let i = 0; i < gameWord.length; i++) {
     // create letter container
