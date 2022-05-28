@@ -7,11 +7,11 @@ let customWord = [];
 let gameIsOver = true;
 let wrongLetterParagraph = document.querySelector("#wrongLetters");
 
-document.addEventListener("keypress", (e) => {
+document.addEventListener("keydown", (e) => {
   if (!gameIsOver) {
     gameLogic(e);
   } else {
-    this.removeEventListener("keypress", e);
+    this.removeEventListener("keydown", e);
   }
 });
 
@@ -19,13 +19,13 @@ function openKeyboard() {
   document.querySelector("#inputMobile").focus();
 }
 
-document.querySelector("#inputMobile").addEventListener("keypress", (e) => {
+document.querySelector("#inputMobile").addEventListener("keydown", (e) => {
   if (!gameIsOver) {
     gameLogic(e);
     document.querySelector("#inputMobile").value = "";
   } else {
     document.querySelector("#inputMobile").blur();
-    this.removeEventListener("keypress", e);
+    this.removeEventListener("keydown", e);
   }
 });
 
@@ -146,11 +146,6 @@ function createGameBoard(words) {
   resetGameBoard();
 
   randomWord(words);
-
-  /* gameWord = words[Math.floor(Math.random() * words.length)];
-  while (gameWord == newGameWord) {
-    gameWord = words[Math.floor(Math.random() * words.length)];
-  } */
 
   for (let i = 0; i < gameWord.length; i++) {
     // create letter container
