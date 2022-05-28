@@ -54,6 +54,10 @@ li {
     display: flex;
     flex-direction: column;
     display: none;
+    padding: 20px 20px;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #dcdcdc;
 }
 
 .new_game {
@@ -63,12 +67,41 @@ li {
     display: none;
 }
 
+.endMessage {
+    position: absolute;
+    top: 30%;
+    font-size: 80px;
+    background: #0a3871d9;
+    font-family: cursive;
+    text-shadow: -1px 1px 4px black;
+    padding: 5px 20px;
+    border-radius: 5px;
+    white-space: nowrap;
+    line-height: 120%;
+    pointer-events: none;
+    display: none;
+    box-shadow: 0 0 0 30px transparent;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    50% {
+        transform: scale(1.01);
+    }
+
+    from {
+        box-shadow: 0 0 0 0;
+        /* box-shadow: 0 0 0 0 #0A3871; */
+    }
+}
+
 .container_canvas {
     margin-bottom: 10px;
 }
 
 #canvas {
     margin-bottom: 20px;
+    pointer-events: none;
 }
 
 .game_info {
@@ -119,6 +152,18 @@ li {
     background-color: #0A3871;
 }
 
+.new_word_title {
+    margin-bottom: 20px;
+    color: #0a3871;
+    font-size: 26px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.new_word_title :last-child {
+    margin-top: 10px;
+}
+
 #newWord {
     text-transform: uppercase;
     padding: 0 10px;
@@ -139,11 +184,16 @@ li {
     color: #0A3871;
     font-weight: 700;
     display: none;
-    transition: all 0.5s;
 }
 
 .expand {
-    transform: scale(1.02);
+    animation: expand linear 0.5s;
+}
+
+@keyframes expand {
+    50% {
+        transform: scale(1.05)
+    }
 }
 
 .input_error {
@@ -239,6 +289,42 @@ footer {
     gap: 15px;
 }
 
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.5);
+    z-index: 98;
+    display: none;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin: 0 auto;
+    z-index: 99;
+    width: 700px;
+    background-color: white;
+    border-radius: 25px;
+    border: 1px solid #dcdcdc;
+    padding: 80px 0;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: #0A3871;
+    align-items: center;
+    right: 0;
+    left: 0;
+    top: 25vh;
+}
+
+.buttons_modal {
+    margin-top: 50px;
+}
+
 /* Overflow Bar */
 
 /* width */
@@ -326,6 +412,11 @@ footer {
         width: 250px;
         height: 250px;
     }
+
+    .endMessage {
+        top: 28%;
+        font-size: 60px;
+    }
 }
 
 @media screen and (max-width: 630px) {
@@ -350,7 +441,7 @@ footer {
     }
 
     #newWord {
-        font-size: 20px;
+        font-size: 18px;
         line-height: 40px;
     }
 
@@ -373,6 +464,25 @@ footer {
     #canvas {
         width: 200px;
         height: 200px;
+    }
+
+    .warning_error {
+        font-size: 12px;
+    }
+
+    .endMessage {
+        top: 20%;
+        font-size: 55px;
+        box-shadow: 0 0 0 20px transparent;
+    }
+
+    .modal {
+        width: 500px;
+    }
+
+    .buttons_modal {
+        display: flex;
+        flex-direction: column;
     }
 }
 
@@ -410,5 +520,29 @@ footer {
 
     .bracket {
         font-size: 22px;
+    }
+
+    .endMessage {
+        top: 24%;
+        font-size: 45px;
+        padding: 5px 10px;
+        box-shadow: 0 0 0 15px transparent;
+    }
+
+    .new_word_added {
+        font-size: 15px;
+    }
+
+    .new_word_title {
+        margin-bottom: 20px;
+        color: #0a3871;
+        font-size: 18px;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .modal {
+        width: 310px;
+        font-size: 20px;
     }
 }

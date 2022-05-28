@@ -22,6 +22,17 @@
       <h1>Ahorcado!</h1>
     </div>
     <div class="container">
+      <!-- Modal -->
+      <div class="overlay">
+        <div id="modal" class="modal">
+          <p id="modalText"></p>
+          <div class="buttons_modal">
+            <button id="modalOk" type="button">Aceptar</button>
+            <button type="button" onclick="cancelModal()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
       <!-- Index -->
       <div class="start">
         <button id="startNewGame" type="button" onclick="startNewGame()">
@@ -33,6 +44,10 @@
       </div>
       <!-- New Word -->
       <div class="new_word">
+        <div class="new_word_title">
+          <p>Agregá tantas palabras como desees.</p>
+          <p>Se elegirán aleatoriamente.</p>
+        </div>
         <input
           name="newWord"
           id="newWord"
@@ -68,17 +83,20 @@
       <!-- New Game -->
       <div class="new_game">
         <div class="container container_canvas">
+          <div class="endMessage"></div>
           <!-- canvas -->
           <canvas id="canvas" width="350" height="350"></canvas>
           <!-- canvas -->
           <!-- Board -->
 
           <div class="game_info">
-            <p><b>Intentos:</b> <span id="attemptsLeft"></span></p>
+            <p>
+              Intentos: <b><span id="attemptsLeft"></span></b>
+            </p>
             <div class="wrong_letters_container">
               Letras incorrectas:
               <span class="bracket">[</span>
-              <p id="wrongLetters"></p>
+              <b><p id="wrongLetters"></p></b>
               <span class="bracket">]</span>
             </div>
             <div class="correct_word">
@@ -99,10 +117,19 @@
             <button id="showKeyboard" type="button">Abrir teclado</button>
           </div>
           <div class="buttons_container">
-            <button id="newGame" type="button" onclick="newGame()">
+            <button
+              id="newGame"
+              type="button"
+              onclick="openModal('¿Desea iniciar un juego nuevo?', newGame)"
+            >
               Nuevo Juego
             </button>
-            <button type="button" onclick="quitGame()">Desistir</button>
+            <button
+              type="button"
+              onclick="openModal('¿Desea salir del juego?', quitGame)"
+            >
+              Desistir
+            </button>
           </div>
         </div>
       </div>

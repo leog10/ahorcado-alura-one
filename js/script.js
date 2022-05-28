@@ -58,15 +58,13 @@ function addCustomWord() {
 }
 
 function newWordAdded() {
-  document.querySelector(".new_word_added").style.display = "block";
+  document.querySelector(".new_word_added").style.display = "inline-block";
   setTimeout(() => {
-    document.querySelector(".new_word_added").classList.remove("collapse");
     document.querySelector(".new_word_added").classList.add("expand");
   }, 50);
   setTimeout(() => {
     document.querySelector(".new_word_added").classList.remove("expand");
-    document.querySelector(".new_word_added").classList.add("collapse");
-  }, 250);
+  }, 500);
 }
 
 document.querySelector("#newWord").addEventListener("input", () => {
@@ -97,6 +95,7 @@ function playCustomWord() {
 }
 
 function newGame() {
+  newGameButton.blur();
   if (customWord[0]) {
     createGameBoard(customWord);
   } else {
@@ -116,6 +115,7 @@ function resetGameBoard() {
   wrongLetterParagraph.textContent = "";
   document.querySelector("#attemptsLeft").textContent = 6;
   drawHanger();
+  document.querySelector(".endMessage").style.display = "none";
 }
 
 function createGameBoard(words) {
@@ -211,7 +211,7 @@ function checkWin() {
 function youWin() {
   gameIsOver = true;
   setTimeout(() => {
-    alert("GANASTE!");
+    endMsg("#00d400", "Ganaste!🎉");
   }, 10);
 }
 
@@ -219,8 +219,14 @@ function gameOver() {
   gameIsOver = true;
   showCorrectWord();
   setTimeout(() => {
-    alert("GAME OVER! jajajajaja");
+    endMsg("red", "Perdiste!⚰️");
   }, 50);
+}
+
+function endMsg(color, text) {
+  document.querySelector(".endMessage").style.display = "block";
+  document.querySelector(".endMessage").style.color = color;
+  document.querySelector(".endMessage").textContent = text;
 }
 
 function drawHangman(attemptsLeft) {
@@ -284,4 +290,17 @@ function clearCanvas() {
   let ctx = canvas.getContext("2d");
   ctx.beginPath();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function openModal(text, call) {
+  document.querySelector(".overlay").style.display = "block";
+  document.querySelector("#modalText").textContent = text;
+  document.querySelector("#modalOk").onclick = () => {
+    call();
+    document.querySelector(".overlay").style.display = "none";
+  };
+}
+
+function cancelModal() {
+  document.querySelector(".overlay").style.display = "none";
 }
