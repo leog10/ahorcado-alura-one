@@ -9,7 +9,7 @@ let wrongLetterParagraph = document.querySelector("#wrongLetters");
 
 document.addEventListener("keypress", (e) => {
   if (!gameIsOver) {
-    gameLogic(e);
+    gameLogic(e.key);
   } else {
     this.removeEventListener("keypress", e);
   }
@@ -19,13 +19,14 @@ function openKeyboard() {
   document.querySelector("#inputMobile").focus();
 }
 
-document.querySelector("#inputMobile").addEventListener("input", (e) => {
+document.querySelector("#inputMobile").addEventListener("keyup", (e) => {
   if (!gameIsOver) {
-    gameLogic(e);
+    console.log(e.key);
+    gameLogic(e.key);
     document.querySelector("#inputMobile").value = "";
   } else {
     document.querySelector("#inputMobile").blur();
-    this.removeEventListener("input", e);
+    this.removeEventListener("keyup", e);
   }
 });
 
@@ -163,11 +164,11 @@ function createGameBoard(words) {
   }
 }
 
-function gameLogic(e) {
-  if (/[a-zA-ZÑñ]/.test(e.key) && e.key != "Enter") {
+function gameLogic(eventKey) {
+  if (/[a-zA-ZÑñ]/.test(eventKey) && eventKey != "Enter") {
     let indexes = [];
     let _gameWordSplitted = gameWord.split("");
-    let key = e.key.toUpperCase();
+    let key = eventKey.toUpperCase();
     let index = _gameWordSplitted.indexOf(key);
     if (index === -1 && !wrongLetters.includes(key)) {
       wrongLetters.push(key);
