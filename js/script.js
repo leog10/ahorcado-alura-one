@@ -84,7 +84,7 @@ function newWordAdded() {
   }, 500);
 }
 
-document.querySelector("#newWord").addEventListener("keypress", () => {
+document.querySelector("#newWord").addEventListener("keyup", () => {
   if (document.querySelector("#newWord").value.length < 3) {
     document.querySelector("#warningErrorNewCustomGame").style.display = "none";
     document.querySelector("#newWord").classList.remove("input_correct");
@@ -242,6 +242,7 @@ function youWin() {
 
 function gameOver() {
   gameIsOver = true;
+  document.querySelector("#inputMobile").blur();
   showCorrectWord();
   setTimeout(() => {
     endMsg("red", "Perdiste!⚰️");
