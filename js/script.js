@@ -2,7 +2,6 @@ const newGameButton = document.querySelector("#newGame");
 let gameWord = "";
 let wrongLetters = [];
 let correctLetters = [];
-let words = ["ALURA", "ANGULAR", "PYTHON", "PAPANATA", "PROGRAMADOR"];
 let customWord = [];
 let gameIsOver = true;
 let wrongLetterParagraph = document.querySelector("#wrongLetters");
