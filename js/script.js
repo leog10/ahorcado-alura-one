@@ -236,6 +236,7 @@ function checkWin() {
 
 function youWin() {
   gameIsOver = true;
+  document.querySelector("#inputMobile").blur();
   setTimeout(() => {
     endMsg("#00d400", "Ganaste!🎉");
   }, 10);
