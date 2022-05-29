@@ -138,8 +138,10 @@ function randomWord(words) {
   let newGameWord = gameWord;
   gameWord = words[Math.floor(Math.random() * words.length)];
 
-  while (gameWord == newGameWord) {
-    gameWord = words[Math.floor(Math.random() * words.length)];
+  if (words.length > 1 || customWord.length > 1) {
+    while (gameWord == newGameWord) {
+      gameWord = words[Math.floor(Math.random() * words.length)];
+    }
   }
 }
 
