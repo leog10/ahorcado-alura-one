@@ -332,3 +332,8 @@ function openModal(text, call) {
 function cancelModal() {
   document.querySelector(".overlay").style.display = "none";
 }
+
+// Get Current Year.
+const currentYear = new Date().getFullYear();
+// Asign current year in footer
+document.querySelector("#year").innerHTML = currentYear;
